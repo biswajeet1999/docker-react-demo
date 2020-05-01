@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    stdin_open: true # same as giving -it command in docker run
+    # volumes:
+    #   - /app/node_modules
+    #   - .:/app
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    # don't need to expose ports bcz testing done on cmd only
+    # volumes:
+    #   - /app/node_modules
+    #   - .:/app
+    command: ["npm", "run", "test"]
